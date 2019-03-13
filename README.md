@@ -8,7 +8,7 @@ Ensure that you have SentiStrength.jar file and SentiStrengthData Language folde
 Pip:
 
 ```sh
-pip install pysentistrength
+pip install sentistrength
 ```
 
 

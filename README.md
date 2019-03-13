@@ -1,4 +1,4 @@
-# pysentistrength
+# Python-SentiStrength
 Python 3 Wrapper for SentiStrength, reads a single or multiple input with options for binary class or scale output.
 
 Ensure that you have SentiStrength.jar file and SentiStrengthData Language folders, otherwise you can download them from http://sentistrength.wlv.ac.uk/.

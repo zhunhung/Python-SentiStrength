@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="sentistrength-zhunhung",
+    name="sentistrength",
     version="0.0.1",
     author="Zhun Hung",
     author_email="yongzhunhung@gmail.com",

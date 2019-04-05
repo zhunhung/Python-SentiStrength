@@ -7,7 +7,7 @@ from os import getcwd
 
 class PySentiStr:
     def __init__(self):
-    	pass
+        pass
         # self.SentiStrengthLocation = os.path.join(getcwd(),"SentiStrength.jar")
         # self.SentiStrengthLanguageFolder = os.path.join(getcwd(),"SentiStrengthData/")
 
@@ -19,12 +19,12 @@ class PySentiStr:
         self.SentiStrengthLanguageFolder = sslf_Path
 
     def getSentiment(self, df_text, score='scale'):
-    	if not hasattr(self, 'SentiStrengthLocation'):
-    		print("Set path using setSentiStrengthPath(path) function.")
-        if not hasattr(self, 'SentiStrengthLanguageFolder'):
-            print("Set path using setSentiStrengthLanguageFolderPath(path) function.")
+        if not hasattr(self, 'SentiStrengthLocation'):
+            assert False, "Set path using setSentiStrengthPath(path) function."
 
-        # Able to take in single string or list of string and convert into pandas Series
+        if not hasattr(self, 'SentiStrengthLanguageFolder'):
+            assert False, "Set path using setSentiStrengthLanguageFolderPath(path) function."
+
         if type(df_text) != pd.Series:
             df_text = pd.Series(df_text)
         df_text = df_text.str.replace('\n','')

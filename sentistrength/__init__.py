@@ -7,14 +7,11 @@ from os import getcwd
 
 class PySentiStr:
     def __init__(self):
-        self.SentiStrengthLocation = os.path.join(getcwd(),"SentiStrength.jar")
-        self.SentiStrengthLanguageFolder = os.path.join(getcwd(),"SentiStrengthData/")
+    	pass
+        # self.SentiStrengthLocation = os.path.join(getcwd(),"SentiStrength.jar")
+        # self.SentiStrengthLanguageFolder = os.path.join(getcwd(),"SentiStrengthData/")
 
-        if not os.path.isfile(self.SentiStrengthLocation):
-            print("SentiStrength not found at: ", SentiStrengthLocation,'\nSet path using setSentiStrengthPath(path) function.')
-        if not os.path.isdir(self.SentiStrengthLanguageFolder):
-            print("SentiStrength data folder not found at: ", SentiStrengthLanguageFolder,'\nSet path using setSentiStrengthLanguageFolderPath(path) function.')
-
+        
     def setSentiStrengthPath(self, ss_Path):
         self.SentiStrengthLocation = ss_Path
 
@@ -22,6 +19,11 @@ class PySentiStr:
         self.SentiStrengthLanguageFolder = sslf_Path
 
     def getSentiment(self, df_text, score='scale'):
+    	if not hasattr(self, 'SentiStrengthLocation'):
+    		print("Set path using setSentiStrengthPath(path) function.")
+        if not hasattr(self, 'SentiStrengthLanguageFolder'):
+            print("Set path using setSentiStrengthLanguageFolderPath(path) function.")
+
         # Able to take in single string or list of string and convert into pandas Series
         if type(df_text) != pd.Series:
             df_text = pd.Series(df_text)

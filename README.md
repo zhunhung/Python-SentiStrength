@@ -45,7 +45,7 @@ Example use (list of strings or pandas Series):
 
 ## Path Setup
 
-Ensure that you have SentiStrength.jar file and SentiStrengthData folder in the same folder, otherwise you can specify the path:
+Specify the paths as such:
 
 ```python
 >>> senti = PySentiStr()

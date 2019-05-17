@@ -37,11 +37,11 @@ class PySentiStr:
         stdout_text = stdout_text.rstrip().replace("\t"," ")
         stdout_text = stdout_text.replace('\r\n','')
         senti_score = stdout_text.split(' ')
+        senti_score = list(map(float, senti_score))
+        senti_score = [int(i) for i in senti_score]
         if score == 'scale':
-            senti_score = list(map(int, senti_score))
             senti_score = [sum(senti_score[i:i+2])/4 for i in range(0, len(senti_score), 2)]
         elif score == 'binary': # Return Positive and Negative Score
-            senti_score = list(map(int, senti_score))
             senti_score = [tuple(senti_score[i:i+2]) for i in range(0, len(senti_score), 2)]
         else:
             return "Argument 'score' takes in either 'scale' (between -1 to 1) or 'binary' (two scores, positive and negative rating)"

@@ -42,7 +42,7 @@ Example use (list of strings or pandas Series):
 
 ... [(2, -1), (1, -2)]
 # OR, if you want binary scoring (1 for positive sentence, -1 for negative sentence)
->>> result = senti.getSentiment(str_arr, score='dual')
+>>> result = senti.getSentiment(str_arr, score='binary')
 >>> print(result)
 
 ... [1, -1]

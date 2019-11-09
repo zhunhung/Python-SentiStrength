@@ -8,9 +8,6 @@ from os import getcwd
 class PySentiStr:
     def __init__(self):
         pass
-        # self.SentiStrengthLocation = os.path.join(getcwd(),"SentiStrength.jar")
-        # self.SentiStrengthLanguageFolder = os.path.join(getcwd(),"SentiStrengthData/")
-
         
     def setSentiStrengthPath(self, ss_Path):
         self.SentiStrengthLocation = ss_Path
@@ -40,19 +37,21 @@ class PySentiStr:
         stdout_text = stdout_text.rstrip().replace("\t"," ")
         stdout_text = stdout_text.replace('\r\n','')
         senti_score = stdout_text.split(' ')
-        
+
         try:
             senti_score = list(map(float, senti_score))
         except ValueError:
             raise ValueError("SentiStrengthLanguageFolderPath is set as '{}'. Ensure it is correct and ends with a forward slash '/'".format( self.SentiStrengthLanguageFolder))
 
         senti_score = [int(i) for i in senti_score]
-        if score == 'scale':
+        if score == 'scale': # Returns from -1 to 1
             senti_score = [sum(senti_score[i:i+2])/4 for i in range(0, len(senti_score), 3)]
-        elif score == 'binary': # Return Positive and Negative Score
-            senti_score = [tuple(senti_score[i:i+2]) for i in range(0, len(senti_score), 3)]
+        elif score == 'binary': # Return 1 if positive and -1 if negative
+            senti_score = [1 if senti_score[i] >= abs(senti_score[i+1]) else -1 for i in range(0, len(senti_score), 3)]
         elif score == 'trinary': # Return Positive and Negative Score and Neutral Score
             senti_score = [tuple(senti_score[i:i+3]) for i in range(0, len(senti_score), 3)]
+        elif score == 'dual': # Return Positive and Negative Score
+            senti_score = [tuple(senti_score[i:i+2]) for i in range(0, len(senti_score), 3)]
         else:
             return "Argument 'score' takes in either 'scale' (between -1 to 1) or 'binary' (two scores, positive and negative rating)"
         return senti_score

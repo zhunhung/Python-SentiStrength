@@ -33,22 +33,26 @@ class PySentiStr:
         df_text = df_text.str.replace('\n','')
         df_text = df_text.str.replace('\r','')
         conc_text = '\n'.join(df_text)
-        p = subprocess.Popen(shlex.split("java -jar '" + self.SentiStrengthLocation + "' stdin sentidata '" + self.SentiStrengthLanguageFolder + "'"),stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        p = subprocess.Popen(shlex.split("java -jar '" + self.SentiStrengthLocation + "' stdin sentidata '" + self.SentiStrengthLanguageFolder + "' trinary"),stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         b = bytes(conc_text.replace(" ","+"), 'utf-8')
         stdout_byte, stderr_text = p.communicate(b)
         stdout_text = stdout_byte.decode("utf-8")
         stdout_text = stdout_text.rstrip().replace("\t"," ")
         stdout_text = stdout_text.replace('\r\n','')
         senti_score = stdout_text.split(' ')
+        
         try:
             senti_score = list(map(float, senti_score))
         except ValueError:
             raise ValueError("SentiStrengthLanguageFolderPath is set as '{}'. Ensure it is correct and ends with a forward slash '/'".format( self.SentiStrengthLanguageFolder))
+
         senti_score = [int(i) for i in senti_score]
         if score == 'scale':
-            senti_score = [sum(senti_score[i:i+2])/4 for i in range(0, len(senti_score), 2)]
+            senti_score = [sum(senti_score[i:i+2])/4 for i in range(0, len(senti_score), 3)]
         elif score == 'binary': # Return Positive and Negative Score
-            senti_score = [tuple(senti_score[i:i+2]) for i in range(0, len(senti_score), 2)]
+            senti_score = [tuple(senti_score[i:i+2]) for i in range(0, len(senti_score), 3)]
+        elif score == 'trinary': # Return Positive and Negative Score and Neutral Score
+            senti_score = [tuple(senti_score[i:i+3]) for i in range(0, len(senti_score), 3)]
         else:
             return "Argument 'score' takes in either 'scale' (between -1 to 1) or 'binary' (two scores, positive and negative rating)"
         return senti_score

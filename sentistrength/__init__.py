@@ -16,6 +16,9 @@ class PySentiStr:
         self.SentiStrengthLocation = ss_Path
 
     def setSentiStrengthLanguageFolderPath(self, sslf_Path):
+        # Ensure it has a forward slash at the end
+        if sslf_Path[-1] != '/':
+            sslf_Path += '/'
         self.SentiStrengthLanguageFolder = sslf_Path
 
     def getSentiment(self, df_text, score='scale'):
@@ -37,7 +40,10 @@ class PySentiStr:
         stdout_text = stdout_text.rstrip().replace("\t"," ")
         stdout_text = stdout_text.replace('\r\n','')
         senti_score = stdout_text.split(' ')
-        senti_score = list(map(float, senti_score))
+        try:
+            senti_score = list(map(float, senti_score))
+        except ValueError:
+            raise ValueError("SentiStrengthLanguageFolderPath is set as '{}'. Ensure it is correct and ends with a forward slash '/'".format( self.SentiStrengthLanguageFolder))
         senti_score = [int(i) for i in senti_score]
         if score == 'scale':
             senti_score = [sum(senti_score[i:i+2])/4 for i in range(0, len(senti_score), 2)]

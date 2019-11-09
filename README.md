@@ -32,15 +32,25 @@ Example use (list of strings or pandas Series):
 >>> from sentistrength import PySentiStr
 >>> senti = PySentiStr()
 >>> str_arr = ['What a lovely day', 'What a bad day']
->>> result = senti.getSentiment(str_arr)
+>>> result = senti.getSentiment(str_arr, score='scale')
 >>> print(result)
 
 ... [0.25,-0.25]
-# OR, if want binary scoring (a score each for positive rating and negativing rating) instead of scale
->>> result = senti.getSentiment(str_arr, score='binary')
+# OR, if you want dual scoring (a score each for positive rating and negative rating)
+>>> result = senti.getSentiment(str_arr, score='dual')
 >>> print(result)
 
 ... [(2, -1), (1, -2)]
+# OR, if you want binary scoring (1 for positive sentence, -1 for negative sentence)
+>>> result = senti.getSentiment(str_arr, score='dual')
+>>> print(result)
+
+... [1, -1]
+# OR, if you want trinary scoring (a score each for positive rating, negative rating and neutral rating)
+>>> result = senti.getSentiment(str_arr, score='trinary')
+>>> print(result)
+
+... [(2, -1, 1), (1, -2, -1)]
 ```
 
 ## Path Setup

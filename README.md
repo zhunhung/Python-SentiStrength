@@ -59,8 +59,8 @@ Specify the paths as such:
 
 ```python
 >>> senti = PySentiStr()
->>> senti.setSentiStrengthPath = ... # e.g. 'C:/Documents/SentiStrength.jar'
->>> senti.setSentiStrengthLanguageFolderPath = ... # e.g. 'C:/Documents/SentiStrengthData/'
+>>> senti.setSentiStrengthPath('C:/Documents/SentiStrength.jar')
+>>> senti.setSentiStrengthLanguageFolderPath('C:/Documents/SentiStrengthData/')
 ```
 
 ## License

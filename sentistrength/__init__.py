@@ -37,11 +37,8 @@ class PySentiStr:
         stdout_text = stdout_text.rstrip().replace("\t"," ")
         stdout_text = stdout_text.replace('\r\n','')
         senti_score = stdout_text.split(' ')
-
-        try:
-            senti_score = list(map(float, senti_score))
-        except ValueError:
-            raise ValueError("SentiStrengthLanguageFolderPath is set as '{}'. Ensure it is correct and ends with a forward slash '/'".format( self.SentiStrengthLanguageFolder))
+     
+        senti_score = list(map(float, senti_score))        
 
         senti_score = [int(i) for i in senti_score]
         if score == 'scale': # Returns from -1 to 1

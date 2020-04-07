@@ -41,8 +41,8 @@ class PySentiStr:
         senti_score = list(map(float, senti_score))        
 
         senti_score = [int(i) for i in senti_score]
-        if score == 'scale': # Returns from -1 to 1
-            senti_score = [sum(senti_score[i:i+2])/4 for i in range(0, len(senti_score), 3)]
+        if score == 'scale': # Returns from -4 to 4
+            senti_score = [sum(senti_score[i:i+2]) for i in range(0, len(senti_score), 3)]
         elif score == 'binary': # Return 1 if positive and -1 if negative
             senti_score = [1 if senti_score[i] >= abs(senti_score[i+1]) else -1 for i in range(0, len(senti_score), 3)]
         elif score == 'trinary': # Return Positive and Negative Score and Neutral Score

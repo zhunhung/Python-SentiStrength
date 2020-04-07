@@ -35,7 +35,7 @@ Example use (list of strings or pandas Series):
 >>> result = senti.getSentiment(str_arr, score='scale')
 >>> print(result)
 
-... [0.25,-0.25]
+... [1, -1]
 # OR, if you want dual scoring (a score each for positive rating and negative rating)
 >>> result = senti.getSentiment(str_arr, score='dual')
 >>> print(result)

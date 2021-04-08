@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="sentistrength",
-    version="0.0.8",
+    version="0.0.9",
     author="Zhun Hung",
     author_email="yongzhunhung@gmail.com",
     description="Python 3 Wrapper for SentiStrength, reads a single or multiple input with options for binary class or scale output.",

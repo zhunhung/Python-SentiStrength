@@ -37,8 +37,11 @@ class PySentiStr:
         stdout_text = stdout_text.rstrip().replace("\t"," ")
         stdout_text = stdout_text.replace('\r\n','')
         senti_score = stdout_text.split(' ')
-     
-        senti_score = list(map(float, senti_score))        
+
+        try:
+            senti_score = list(map(float, senti_score))
+        except:
+            raise Exception(stdout_text)
 
         senti_score = [int(i) for i in senti_score]
         if score == 'scale': # Returns from -4 to 4
